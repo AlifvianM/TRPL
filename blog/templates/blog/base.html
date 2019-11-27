@@ -29,9 +29,18 @@
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
               {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                  <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
+                  {# <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a> #}
+                  {# <a class="nav-item nav-link" href="{% url 'blog-post_saya' %}">Post Saya</a> #}
+                  <a class="nav-item nav-link" href="{% url 'surveyor-list' %}">Post Surveyor</a>
+                  {% else %}
                   <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
                   {# <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a> #}
                   <a class="nav-item nav-link" href="{% url 'blog-post_saya' %}">Post Saya</a>
+                  <a class="nav-item nav-link" href="{% url 'surveyor-list' %}">Post Surveyor</a>
+                {% endif %}
+                  
               {% else %}
                   <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
                   <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
@@ -41,8 +50,14 @@
             <div class="navbar-nav">
 
               {% if user.is_authenticated %}
-              <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
-              <a class="nav-item nav-link" href="{% url 'profile' %}">{{user.first_name}} {{user.last_name}}</a>
+                {% if user.is_staff %}
+                  <a class="nav-item nav-link" href="{% url 'surveyor-create' %}">New Post</a>
+                  <a class="nav-item nav-link" href="{% url 'profile' %}">{{user.first_name}} {{user.last_name}}</a>
+                  {% else %}
+                  <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
+                  <a class="nav-item nav-link" href="{% url 'profile' %}">{{user.first_name}} {{user.last_name}}</a>
+                {% endif %}
+              
 
 
               <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>  
@@ -69,7 +84,8 @@
           {% endif %}
           {% block content %}{% endblock %}
         </div>
-        <div class="col-md-4">
+        {% if user.is_authenticated %}
+          <div class="col-md-4">
           <div class="content-section">
             <h3>Our Sidebar</h3>
             <p class='text-muted'>You can put any information here you'd like.
@@ -83,6 +99,7 @@
           </div>
         </div>
       </div>
+        {% endif %}
     </main>
 
     <!-- Optional JavaScript -->

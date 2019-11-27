@@ -31,8 +31,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'material.admin',
+    'rest_framework',
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
+    'surveyor.apps.SurveyorConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -78,16 +81,16 @@ WSGI_APPLICATION = 'TRPL.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'NAME': 'jemberinf',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {
-           'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'NAME': 'jemberinf',
+        # 'USER': 'root',
+        # 'PASSWORD': '',
+        # 'HOST': 'localhost',
+        # 'PORT': '3306',
+        # 'OPTIONS': {
+        #    'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        # }
     }
 }
 
@@ -138,3 +141,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'blog-home'
 
 LOGIN_URL = 'login'
+
+
+
+

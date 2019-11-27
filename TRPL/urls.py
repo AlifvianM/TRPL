@@ -20,12 +20,33 @@ from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
 
+from django.contrib.staticfiles.templatetags.staticfiles import static as staticfiles
+# from django.urls import path, include
+from django.utils.translation import ugettext_lazy as _
+
+from material.admin.sites import site
+
+
+# optional
+###################################################
+site.site_header = _('JemberINF Administrations')
+# site.site_title = _('Your site title')
+# site.favicon = staticfiles('path/to/favicon')
+# site.main_bg_color = 'green'
+# site.main_hover_color = 'yellow'
+# site.profile_picture = staticfiles('path/to/image')
+# site.profile_bg = staticfiles('path/to/image')
+# site.login_logo = staticfiles('path/to/image')
+# site.logout_bg = staticfiles('path/to/image')
+###################################################
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', include('material.admin.urls')),
     path('register/', user_views.register, name='register'),
     path('profile/', user_views.profile, name='profile'),
     path('login/', auth_views.LoginView.as_view(template_name = 'users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name = 'users/logout.html'), name='logout'),
+    path('surveyor/', include('surveyor.urls')),
 	path('',include('blog.urls')),
 ]
 
