@@ -1,0 +1,138 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+    <title>JemberINF</title>
+    <link rel="apple-touch-icon" sizes="180x180" href=" {% static "assets/img/fav/apple-touch-icon.png" %} ">
+    <link rel="icon" type="image/png" sizes="32x32" href=" {% static "assets/img/fav/favicon-32x32.png" %} ">
+    <link rel="icon" type="image/png" sizes="16x16" href=" {% static "assets/img/fav/favicon-16x16.png" %} ">
+    <link rel="mask-icon" href=" {% static "assets/img/fav/safari-pinned-tab.svg" %} " color="#7052fb">
+    <meta name="msapplication-TileColor" content="#7052fb">
+    <meta name="theme-color" content="#7052fb">
+    <link rel="stylesheet" href="{% static "dependencies/bootstrap/css/bootstrap.min.css" %} " type="text/css">
+    <link rel="stylesheet" href="{% static "dependencies/fontawesome/css/all.min.css" %} " type="text/css">
+    <link rel="stylesheet" href="{% static "dependencies/swiper/css/swiper.min.css" %} " type="text/css">
+    <link rel="stylesheet" href="{% static "dependencies/wow/css/animate.css" %} " type="text/css">
+    <link rel="stylesheet" href="{% static "dependencies/magnific-popup/css/magnific-popup.css" %} " type="text/css">
+    <link rel="stylesheet" href="{% static "dependencies/components-elegant-icons/css/elegant-icons.min.css" %} "
+        type="text/css">
+    <link rel="stylesheet" href="{% static "dependencies/simple-line-icons/css/simple-line-icons.css" %} "
+        type="text/css">
+    <link rel="stylesheet" href="{% static "assets/css/app.css" %} " type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
+</head>
+
+<body id="home-version-1" class="home-version-1" data-style="default"><a href="signup.html#main_content"
+        data-type="section-switch" class="return-to-top"><i class="fa fa-chevron-up"></i></a>
+    <div class="page-loader">
+        <div class="loader">
+            <div class="blobs">
+                <div class="blob-center"></div>
+                <div class="blob"></div>
+                <div class="blob"></div>
+                <div class="blob"></div>
+                <div class="blob"></div>
+                <div class="blob"></div>
+                <div class="blob"></div>
+            </div><svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <defs>
+                    <filter id="goo">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                        <feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                        <feBlend in="SourceGraphic" in2="goo" />
+                    </filter>
+                </defs>
+            </svg>
+        </div>
+    </div>
+    <div id="main_content">
+        <header class="site-header header-dark header_trans-fixed" data-top="992">
+            <div class="container">
+                <div class="header-inner">
+                    <div class="site-mobile-logo"><a href="{% url 'blog-index' %}" class="logo"><img
+                                src="{% static "assets/img/sticky-logo.png"%}" alt="site logo" class="main-logo"> <img
+                                src="{% static "assets/img/sticky-logo.png"%}" alt="site logo" class="sticky-logo"></a>
+                    </div>
+                    <div class="toggle-menu"><span class="bar"></span> <span class="bar"></span> <span
+                            class="bar"></span></div>
+                    <nav class="site-nav nav-dark">
+                        <div class="close-menu"><span>Close</span> <i class="ei ei-icon_close"></i></div>
+                        <div class="site-logo"><a href="{% url 'blog-index' %}" class="logo"><img
+                                    src="{% static "assets/img/sticky-logo.png"%}" alt="site logo" class="main-logo">
+                                <img src="{% static "assets/img/sticky-logo.png"%}" alt="site logo"
+                                    class="sticky-logo"></a></div>
+                        <div class="menu-wrapper" data-top="992">
+                            <ul class="site-main-menu">
+                                <li>
+                                    <a href="{% url 'blog-index' %}">Home</a>
+                                </li>
+                                {% if user.is_authenticated %}
+                                {% if user.is_staff %}
+                                <li><a href="{% url 'blog-home' %}">Post</a></li>
+                                <li><a href="{% url 'surveyor-list' %}">Post surveyor</a></li>
+                                <li class="menu-item-has-children"><a href="#">{{user.first_name}}
+                                        {{user.last_name}}</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="{% url 'blog-post_saya' %}">Post saya</a></li>
+                                        <li><a href="{% url 'profile' %}">Profil</a></li>
+                                        <li><a href="{% url 'logout' %}">Logout</i>
+                                    </ul>
+                                </li>
+                                {% else %}
+                                <li><a href="{% url 'blog-home' %}">Post</a></li>
+                                <li><a href="{% url 'surveyor-list' %}">Post surveyor</a></li>
+                                <li class="menu-item-has-children"><a href="#">{{user.first_name}}
+                                        {{user.last_name}}</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="{% url 'blog-post_saya' %}">Post saya</a></li>
+                                        <li><a href="{% url 'profile' %}">Profil</a></li> 
+                                        <li><a href="{% url 'logout' %}">Logout</i>
+                                    </ul>
+                                </li>
+                                {% endif %}
+                                {% else %}
+                                <li><a href="{% url 'blog-home' %}">Post</a></li>
+                                <li><a href="{% url 'blog-about' %}">About</a></li>
+                                {% endif %}
+                            </ul>
+                            {% if user.is_authenticated %}
+                                {% if user.is_staff %}
+                                <div class="nav-right"><a href="{% url 'surveyor-create' %}" class="nav-btn">Buat post</a></div>
+                                {% else %}
+                                <div class="nav-right"><a href="{% url 'post-create' %}" class="nav-btn">Buat post</a></div>
+                                {% endif %}
+                            {% else %}
+                            <div class="nav-right"><a href="{% url 'register' %}" class="nav-btn">Daftar</a></div>
+                            {% endif %}
+                            
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        {% block section %}{% endblock %}
+
+    </div>
+    <script src="{% static "dependencies/popper.js/popper.min.js" %} "></script>
+    <script src="{% static "dependencies/jquery/jquery.min.js" %} "></script>
+    <script src="{% static "dependencies/bootstrap/js/bootstrap.min.js" %} "></script>
+    <script src="{% static "dependencies/swiper/js/swiper.min.js" %} "></script>
+    <script src="{% static "dependencies/jquery.appear/jquery.appear.js" %} "></script>
+    <script src="{% static "dependencies/wow/js/wow.min.js" %} "></script>
+    <script src="{% static "dependencies/countUp.js/countUp.min.js" %} "></script>
+    <script src="{% static "dependencies/isotope-layout/isotope.pkgd.min.js" %} "></script>
+    <script src="{% static "dependencies/imagesloaded/imagesloaded.pkgd.min.js" %} "></script>
+    <script src="{% static "dependencies/jquery.parallax-scroll/js/jquery.parallax-scroll.js" %} "></script>
+    <script src="{% static "dependencies/magnific-popup/js/jquery.magnific-popup.min.js" %} "></script>
+    <script src="{% static "dependencies/gmap3/js/gmap3.min.js" %} "></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB13ZAvCezMx5TETYIiGlzVIq65Mc2FG5g"></script>
+    <script src="{% static "assets/js/header.js" %} "></script>
+    <script src="{% static "assets/js/app.js" %} "></script>
+</body>
+
+</html>

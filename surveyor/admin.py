@@ -7,6 +7,9 @@ from material.admin.options import MaterialModelAdmin
 from material.admin.sites import site
 
 
-site.register(Surveyor)
 
+@register(Surveyor)
+class SurveyorMaterialAdmin(MaterialModelAdmin):
+	list_display = ('judul', 'waktu_post', 'kerusakan')
+	list_filter = ('judul', 'waktu_post', 'kerusakan')
 # admin.site.register(Surveyor)

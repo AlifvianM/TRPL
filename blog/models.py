@@ -25,6 +25,7 @@ class Post(models.Model):
 	# status 		= models.CharField(max_length=255, choices=STATUS, default='Belum Di Survey')
 	status_id	= models.ForeignKey('Status', on_delete=models.CASCADE,default='1')
 	alamat 		= models.ForeignKey('Alamat', on_delete=models.CASCADE)
+	tanggapan 	= models.CharField(max_length=50, null=True, blank=True)
 	penulis		= models.ForeignKey(User, on_delete = models.CASCADE)
 	# surveyor 	= models.ForeignKey('Surveyor', on_delete=models.CASCADE, default=None)
 

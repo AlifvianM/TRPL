@@ -1,24 +1,76 @@
-{% extends "blog/base.html" %}
+{% extends "blog/master.html" %}
 {% load crispy_forms_tags %}
-{% block content %}
-    <div class="content-section">
-      <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-        <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }}</p>
-        </div>
-      </div>
-      <form method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
-          <fieldset class="form-group">
-              <legend class="border-bottom mb-4">Profile Info</legend>
+{% load static %}
+{% block section %}
+
+<section class="signin signup">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="signup-from-wrapper">
+          <div class="signup-from-inner">
+            <h2 class="title my-3">Profil</h2>
+            <form method="POST" enctype="multipart/form-data" class="singn-form">
+              {% csrf_token %}
               {{ u_form|crispy }}
               {{ p_form|crispy }}
-          </fieldset>
-          <div class="form-group">
-              <button class="btn btn-outline-info" type="submit">Update</button>
+
+              <!-- checkbox pake ini co -->
+              {% comment %} <div class="forget-link">
+                <div class="condition"><input class="styled-checkbox" id="styled-checkbox-1" type="checkbox"
+                    value="value1"> <label for="styled-checkbox-1"></label>
+                  <span>I wish to recieve newsletters, promotions and news from.</span></div>
+              </div> {% endcomment %}
+              <button type="submit" class="pix-btn">Update</button>
+            </form>
           </div>
-      </form>
+          <ul class="animate-ball">
+            <li class="ball"></li>
+            <li class="ball"></li>
+            <li class="ball"></li>
+            <li class="ball"></li>
+            <li class="ball"></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="signup-from-wrapper">
+          <div class="signup-from-top">
+            <img src="{{ user.profile.image.url }}" alt="avater">
+          </div>
+        </div>
+      </div>
     </div>
-{% endblock content %}
+  </div>
+  {% comment %} <div class="signin-banner signup-banner">
+    <div class="animate-image-inner">
+      <div class="image-one"><img src="{{ user.profile.image.url }}" alt="" class="wow pixFadeLeft"></div>
+    </div>
+  </div> {% endcomment %}
+</section>
+{% endblock section %}
+
+{% comment %} {% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content-section">
+  <div class="media">
+    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+    <div class="media-body">
+      <h2 class="account-heading">{{ user.username }}</h2>
+      <p class="text-secondary">{{ user.email }}</p>
+    </div>
+  </div>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Profile Info</legend>
+      {{ u_form|crispy }}
+      {{ p_form|crispy }}
+    </fieldset>
+    <div class="form-group">
+      <button class="btn btn-outline-info" type="submit">Update</button>
+    </div>
+  </form>
+</div>
+{% endblock content %} {% endcomment %}

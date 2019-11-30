@@ -1,16 +1,35 @@
-{% extends "blog/base.html" %}
-{% block content %}
-    <div class="content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Delete Post</legend>
-                <h2>Are you sure you want to delete the post "{{ object.judul }}"</h2>
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
-                <a class="btn btn-outline-secondary" href="{% url 'post-detail' object.id %}">Cancel</a>
+{% extends "blog/master.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block section %}
+<section class="error-page">
+    <div class="container">
+        <div class="error-content-wrapper text-center">
+            <div class="error-content">
+                {% comment %} <img src="media/background/error.png" alt="error"> {% endcomment %}
+                <h2 class="error-title">Menghapus postingan</h2>
+                <p>Apakah anda yakin untuk menghapus postingan {{ object.judul }}?</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <button class="pix-btn submit-btn" type="submit">Ya, hapus</button>
+                    <a href="{% url 'post-detail' object.id %}" class="pix-btn cancel">Batal</a>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
-{% endblock content %}
+</section>
+
+{% comment %} <div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Delete Post</legend>
+            <h2>Are you sure you want to delete the post "{{ object.judul }}"</h2>
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
+            <a class="btn btn-outline-secondary" href="{% url 'post-detail' object.id %}">Cancel</a>
+        </div>
+    </form>
+</div> {% endcomment %}
+{% endblock section %}

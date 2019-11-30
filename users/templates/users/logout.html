@@ -1,9 +1,17 @@
-{% extends "blog/base.html" %}
-{% block content %}
-    <h2>You have been logged out</h2>
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            <a href="{% url 'login' %}">Log In Again</a>
-        </small>
+{% extends "blog/master.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block section %}
+<section class="error-page">
+    <div class="container">
+        <div class="error-content-wrapper text-center">
+            <div class="error-content">
+            {% comment %} <img src="media/background/error.png" alt="error"> {% endcomment %}
+                <h2 class="error-title">Anda telah logout</h2>
+                <p>Silahkan login untuk melakukan pengajuan lagi.</p><a href="{% url 'login' %}" class="pix-btn">Log In
+                    Kembali</a>
+            </div>
+        </div>
     </div>
-{% endblock content %}
+</section>
+{% endblock section %}
